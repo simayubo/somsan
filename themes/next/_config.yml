@@ -35,7 +35,7 @@ favicon:
   #ms_browserconfig: /images/browserconfig.xml
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT"
+keywords: "Somson's Blog"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -127,7 +127,7 @@ scheme: Mist
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/yourname || github
+  GitHub: https://github.com/simayubo || github
   # E-Mail: mailto:yourname@gmail.com || envelope
   # Google: https://plus.google.com/yourname || google
   # Twitter: https://twitter.com/yourname || twitter
@@ -395,7 +395,7 @@ valine:
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+livere_uid: MTAyMC8zOTQ5NS8xNjAyMg==
 
 # Gitment
 # Introduction: https://imsun.net/posts/gitment-introduction/
