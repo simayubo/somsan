@@ -1,7 +1,11 @@
 ---
 title: Linux安装最新内核并开启 BBR TCP加速脚本
 date: 2018-09-04 09:31:11
-tags:
+tags: 
+    - BBR
+    - TCP加速
+categories:
+    - Linux
 ---
 
 最近，Google 开源了其 TCP BBR 拥塞控制算法，并提交到了 Linux 内核，最新的 4.11版内核已经用上了该算法。根据以往的传统，Google 总是先在自家的生产环境上线运用后，才会将代码开源，此次也不例外。
