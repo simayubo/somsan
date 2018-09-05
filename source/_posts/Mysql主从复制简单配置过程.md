@@ -137,4 +137,4 @@ Slave_SQL_Running: No 可能是因为两个数据库数据不一致，可以重�
 ![QQ截图20171022233817.jpg][1]
 
 
-  [1]: https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/10/2028101984.jpg
+  [1]: https://img.somsan.cc/image/VJg
