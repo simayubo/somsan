@@ -139,4 +139,4 @@ ngrok -config=./ngrok.cfg -subdomain=test 80
 
   [1]: https://www.golangtc.com/static/go/
   [2]: https://www.golangtc.com/static/go/1.9/go1.9.linux-amd64.tar.gz
-  [3]: https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/10/3307191471.jpg
+  [3]: https://img.somsan.cc/images/2018/09/05/P5B.jpg
