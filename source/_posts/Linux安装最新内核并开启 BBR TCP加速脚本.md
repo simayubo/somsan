@@ -1,6 +1,6 @@
 ---
 title: Linux安装最新内核并开启 BBR TCP加速脚本
-date: 2018-09-04 09:31:11
+date: 2018-08-10 09:31:11
 tags: 
     - BBR
     - TCP加速
