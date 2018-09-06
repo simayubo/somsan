@@ -1,8 +1,11 @@
 ---
 title: virtualbox下最小化安装centos7后上网设置
+tags:
+  - virtualbox
+categories:
+  - Linux
+abbrlink: 92bf9786
 date: 2018-09-01 21:31:10
-tags: [virtualbox]
-categories: [Linux]
 ---
 
 ## 问题

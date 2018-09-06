@@ -1,8 +1,11 @@
 ---
 title: Composer中国镜像pkg.phpcomposer.com
+tags:
+  - Composer
+categories:
+  - php
+abbrlink: f2ce2a40
 date: 2018-08-20 13:08:11
-tags: [Composer]
-categories: [php]
 ---
 
 ## 用法：

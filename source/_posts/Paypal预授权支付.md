@@ -1,8 +1,13 @@
 ---
 title: Paypal预授权支付
+tags:
+  - 支付
+  - php
+  - paypal
+categories:
+  - php
+abbrlink: 91e1b962
 date: 2018-08-07 10:01:11
-tags: [支付,php,paypal]
-categories: [php]
 ---
 
 因为paypal退款也有手续费，所以可以使用预授权支付，订单产生后，你可以检验订单是否存在欺诈行为，如果存在，则取消订单付款授权，因为你并没有收取用户费用，所以这样不会产生手续费！

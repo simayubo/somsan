@@ -1,8 +1,12 @@
 ---
 title: 使用PHPMailer包实现PHP的邮件发送
-date: 2018-08-6 12:18:11
-tags: [php, Composer]
-categories: [php]
+tags:
+  - php
+  - Composer
+categories:
+  - php
+abbrlink: '50155940'
+date: 2018-08-06 12:18:11
 ---
 
 ## 介绍

@@ -1,8 +1,13 @@
 ---
 title: tp5.1简单使用swoole创建websocket服务端
+tags:
+  - swoole
+  - websocket
+  - php
+categories:
+  - php
+abbrlink: 5a303a8b
 date: 2018-09-06 14:42:43
-tags: [swoole, websocket, php]
-categories: [php]
 ---
 
 ## Swoole安装

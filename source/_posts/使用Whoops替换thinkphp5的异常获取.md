@@ -1,8 +1,11 @@
 ---
 title: 使用Whoops替换thinkphp5的异常获取
+tags:
+  - php
+categories:
+  - php
+abbrlink: 3129d084
 date: 2018-08-04 16:29:11
-tags: [php]
-categories: [php]
 ---
 
 ## 介绍

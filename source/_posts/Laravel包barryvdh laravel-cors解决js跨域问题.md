@@ -1,8 +1,13 @@
 ---
 title: Laravel包barryvdh laravel-cors解决js跨域问题
+tags:
+  - php
+  - laravel
+  - Composer
+categories:
+  - php
+abbrlink: 37025a3b
 date: 2018-08-01 12:12:11
-tags: [php, laravel, Composer]
-categories: [php]
 ---
 
 > github地址：https://github.com/barryvdh/laravel-cors

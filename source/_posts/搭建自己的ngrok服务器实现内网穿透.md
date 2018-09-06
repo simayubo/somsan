@@ -1,8 +1,11 @@
 ---
 title: 搭建自己的ngrok服务器实现内网穿透
+tags:
+  - ngrok
+categories:
+  - 服务器
+abbrlink: e031ff1c
 date: 2018-09-04 09:32:11
-tags: [ngrok]
-categories: [服务器]
 ---
 
 ## 需求

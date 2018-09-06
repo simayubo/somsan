@@ -1,8 +1,11 @@
 ---
 title: PHP笛卡尔积计算函数
+tags:
+  - php
+categories:
+  - php
+abbrlink: 5d456def
 date: 2018-08-27 19:08:56
-tags: [php]
-categories: [php]
 ---
 
 > 今天写商品规格匹配的时候，用到了多数组交叉匹配，所以就用到了这个东西。

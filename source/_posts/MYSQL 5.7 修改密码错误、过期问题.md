@@ -1,8 +1,11 @@
 ---
 title: MYSQL 5.7 修改密码错误、过期问题
+tags:
+  - mysql
+categories:
+  - 服务器
+abbrlink: b6e52540
 date: 2018-07-27 18:12:11
-tags: [mysql]
-categories: [服务器]
 ---
 
 ## 报错：

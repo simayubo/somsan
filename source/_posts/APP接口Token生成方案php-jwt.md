@@ -1,8 +1,12 @@
 ---
 title: APP接口Token生成方案php-jwt
+tags:
+  - php-jwt
+  - Token
+categories:
+  - php
+abbrlink: 770352bb
 date: 2018-09-03 08:12:11
-tags: [php-jwt, Token]
-categories: [php]
 ---
 
 ## 安装方法

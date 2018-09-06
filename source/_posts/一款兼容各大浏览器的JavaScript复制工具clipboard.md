@@ -1,8 +1,12 @@
 ---
 title: 一款兼容各大浏览器的JavaScript复制工具clipboard
+tags:
+  - JavaScript
+  - 前端
+categories:
+  - JavaScript
+abbrlink: 465ab45e
 date: 2018-08-30 19:32:11
-tags: [JavaScript, 前端]
-categories: [JavaScript]
 ---
 
 ## 简介
