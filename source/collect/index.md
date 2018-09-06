@@ -22,7 +22,7 @@ comments: false
 
 ## Composer扩展包推荐
 
-> 可用国内镜像：[Composer中国镜像pkg.phpcomposer.com][1]
+> 可用国内镜像：[Composer中国镜像pkg.phpcomposer.com](https://somsan.cc/archives/f2ce2a40/)
 ### 通用扩展包
 
 | 地址        | 介绍    |
@@ -86,25 +86,23 @@ make install
 | --------   | :----- |
 | http://doc.cocolian.cn/essay/ | 支付系统设计 |
 
-
-  [1]: /2018/08/20/Composer中国镜像pkg.phpcomposer.com/
   [2]: https://github.com/jenssegers/agent
   [3]: https://github.com/RoumenDamianoff/laravel-sitemap
   [4]: https://github.com/Chumper/Zipper
   [5]: https://github.com/SimpleSoftwareIO/simple-qrcode
-  [6]: /2018/09/03/APP接口Token生成方案php-jwt/
+  [6]: /archives/770352bb/
   [7]: https://github.com/5ini99/think-addons
-  [8]: /2018/08/06/使用PHPMailer包实现PHP的邮件发送/
+  [8]: /archives/50155940/
   [9]: https://github.com/PHPOffice/PHPExcel
   [10]: https://github.com/dompdf/dompdf/
   [11]: https://easywechat.org/
   [12]: https://github.com/symfony/var-dumper
   [13]: https://github.com/terranc/think-blade
-  [14]: /2018/08/04/使用Whoops替换thinkphp5的异常获取/
+  [14]: /archives/3129d084/
   [15]: https://github.com/barryvdh/laravel-debugbar
   [16]: https://github.com/barryvdh/laravel-ide-helper
   [17]: https://github.com/Zizaco/entrust
-  [18]: /2018/08/01/Laravel包barryvdh%20laravel-cors解决js跨域问题/
+  [18]: /archives/37025a3b/
   [19]: https://github.com/barryvdh/laravel-dompdf
   [20]: https://github.com/tymondesigns/jwt-auth
   [21]: https://github.com/dingo/api
