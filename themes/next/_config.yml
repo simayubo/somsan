@@ -101,7 +101,6 @@ menu:
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
   collect: /collect/ || suitcase
-  iuu: https://iuu.st/ || magnet
 
 # Enable/Disable menu icons.
 menu_icons:
@@ -130,7 +129,7 @@ scheme: Mist
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
   GitHub: https://github.com/simayubo || github
-  Somsan Img: https://img.somsan.cc || file-image-o
+  iuu.st: https://iuu.st/ || magnet
   # E-Mail: mailto:yourname@gmail.com || envelope
   # Google: https://plus.google.com/yourname || google
   # Twitter: https://twitter.com/yourname || twitter
