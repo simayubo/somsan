@@ -138,7 +138,4 @@ Slave_IO_Running: No 一般是因为防火墙没有添加mysql端口白名单，
 Slave_SQL_Running: No 可能是因为两个数据库数据不一致，可以重新设定从数据库对应主数据库的 Position （show master status;）
 
 这时候你可以在主数据库新建数据库，添加数据表等操作都会同时同步到从数据库
-![QQ截图20171022233817.jpg][1]
-
-
-  [1]: https://img.somsan.cc/images/2018/09/05/JBe.jpg
+![JBe.jpg](https://iuu.st/uploads/iuu/20180915/41a1b925641dd79aca32f9a3cbe3e0ba.jpg)

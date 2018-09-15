@@ -131,7 +131,7 @@ trust_host_root_certs: false
 ngrok -config=./ngrok.cfg -subdomain=test 80
 ```
 如果不出意外将会出现以下界面
-![QQ截图20171005161952.jpg][3]
+![P5B.jpg](https://iuu.st/uploads/iuu/20180915/46df2149f2ea90cc292fcc3587a9ac14.jpg)
 
 ## 错误调试
 #### Failed to read message: remote error: bad certificate
@@ -142,4 +142,3 @@ ngrok -config=./ngrok.cfg -subdomain=test 80
 
   [1]: https://www.golangtc.com/static/go/
   [2]: https://www.golangtc.com/static/go/1.9/go1.9.linux-amd64.tar.gz
-  [3]: https://img.somsan.cc/images/2018/09/05/P5B.jpg

@@ -402,12 +402,9 @@ class Swoole extends Server
 ## 最终效果图
 
 Html效果
-![lZ4.png][1]
+![lZ4.png](https://iuu.st/uploads/iuu/20180915/f357c0da2e5eaf475ca93d305842ce56.png)
 
 websocket连接图
-![za6.png][2]
+![za6.png](https://iuu.st/uploads/iuu/20180915/b0e298044313ec414500a2edecd3a9a7.png)
 
-
-  [1]: https://img.somsan.cc/images/2018/09/06/lZ4.png
-  [2]: https://img.somsan.cc/images/2018/09/06/za6.png
 

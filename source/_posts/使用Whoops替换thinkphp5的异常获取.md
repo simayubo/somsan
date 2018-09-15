@@ -11,7 +11,7 @@ date: 2018-08-04 16:29:11
 ## 介绍
 Whoops是一个很漂亮的异常捕获工具包，tp5自带的自己用不习惯，就换了这个东西，Github: [https://github.com/filp/whoops][1]，先放个预览图：
 
-![QQ截图20170811114522.png][2]
+![atm.png](https://iuu.st/uploads/iuu/20180915/e0e1a5987ac436e0b06de307e2deb62a.png)
 
 
 <!--more-->
@@ -66,4 +66,3 @@ composer require filp/whoops
 
 
   [1]: https://github.com/filp/whoops
-  [2]: https://img.somsan.cc/images/2018/09/06/atm.png
