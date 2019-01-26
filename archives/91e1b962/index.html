@@ -1,0 +1,314 @@
+<!DOCTYPE html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="php,支付,paypal,"><meta name="description" content="因为paypal退款也有手续费，所以可以使用预授权支付，订单产生后，你可以检验订单是否存在欺诈行为，如果存在，则取消订单付款授权，因为你并没有收取用户费用，所以这样不会产生手续费！安装composer包1composer require &amp;quot;paypal/rest-api-sdk-php&amp;quot;申请Paypal应用创建paypal开发者账号：https://developer.payp"><meta name="keywords" content="php,支付,paypal"><meta property="og:type" content="article"><meta property="og:title" content="Paypal预授权支付"><meta property="og:url" content="http://somson.cc/archives/91e1b962/index.html"><meta property="og:site_name" content="Somson&#39;s Blog"><meta property="og:description" content="因为paypal退款也有手续费，所以可以使用预授权支付，订单产生后，你可以检验订单是否存在欺诈行为，如果存在，则取消订单付款授权，因为你并没有收取用户费用，所以这样不会产生手续费！安装composer包1composer require &amp;quot;paypal/rest-api-sdk-php&amp;quot;申请Paypal应用创建paypal开发者账号：https://developer.payp"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/09/3006909208.jpg"><meta property="og:image" content="https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/09/2749984631.jpg"><meta property="og:image" content="https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/09/314671106.jpg"><meta property="og:updated_time" content="2019-01-26T11:37:52.522Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Paypal预授权支付"><meta name="twitter:description" content="因为paypal退款也有手续费，所以可以使用预授权支付，订单产生后，你可以检验订单是否存在欺诈行为，如果存在，则取消订单付款授权，因为你并没有收取用户费用，所以这样不会产生手续费！安装composer包1composer require &amp;quot;paypal/rest-api-sdk-php&amp;quot;申请Paypal应用创建paypal开发者账号：https://developer.payp"><meta name="twitter:image" content="https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/09/3006909208.jpg"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://somson.cc/archives/91e1b962/"><title>Paypal预授权支付 | Somson's Blog</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Somson's Blog</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">Somson成长的点点滴滴</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-collect"><a href="/collect/" rel="section"><i class="menu-item-icon fa fa-fw fa-suitcase"></i><br>收藏</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://somson.cc/archives/91e1b962/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Somson"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Somson's Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Paypal预授权支付</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T02:01:11+00:00">2018-08-07 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/php/" itemprop="url" rel="index"><span itemprop="name">php</span></a></span></span></div></header><div class="post-body" itemprop="articleBody"><p>因为paypal退款也有手续费，所以可以使用预授权支付，订单产生后，你可以检验订单是否存在欺诈行为，如果存在，则取消订单付款授权，因为你并没有收取用户费用，所以这样不会产生手续费！</p><h2 id="安装composer包"><a href="#安装composer包" class="headerlink" title="安装composer包"></a>安装composer包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require &quot;paypal/rest-api-sdk-php&quot;</span><br></pre></td></tr></table></figure><h2 id="申请Paypal应用"><a href="#申请Paypal应用" class="headerlink" title="申请Paypal应用"></a>申请Paypal应用</h2><ul><li>创建paypal开发者账号：<a href="https://developer.paypal.com/" target="_blank" rel="noopener">https://developer.paypal.com/</a></li><li>创建应用：<br>找到<code>REST API apps</code>,然后常见应用<code>Create App</code>:</li></ul><a id="more"></a><p><img src="https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/09/3006909208.jpg" alt="QQ截图20170905230622.jpg"></p><ul><li>创建成功后，你可以拿到<code>Client ID</code>和<code>Secret</code>，（这里分sandbox（测试）和live（正式））</li></ul><p><img src="https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/09/2749984631.jpg" alt="QQ截图20170905230925.jpg"></p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * paypal支付</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">paypal</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">//预授权支付</span></span><br><span class="line">        $apiContext = <span class="keyword">new</span> ApiContext(</span><br><span class="line">            <span class="keyword">new</span> OAuthTokenCredential(</span><br><span class="line">                <span class="keyword">$this</span>-&gt;config[<span class="string">'PAYPAL_APPID'</span>], <span class="comment">//Client ID</span></span><br><span class="line">                <span class="keyword">$this</span>-&gt;config[<span class="string">'PAYPAL_APPKEY'</span>]  <span class="comment">//Secret</span></span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line">        $apiContext-&gt;setConfig([<span class="string">'mode'</span> =&gt; <span class="string">'live'</span>]); <span class="comment">//如果使用正式环境，请加上这个</span></span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">catch</span> (\<span class="keyword">Exception</span> $exception)&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;error(<span class="string">'系统错误：'</span>.$exception-&gt;getMessage(), url(<span class="string">'home/user/order'</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $payer = <span class="keyword">new</span> Payer();</span><br><span class="line">    $payer-&gt;setPaymentMethod(<span class="string">"paypal"</span>);  <span class="comment">//支付方式 "credit_card", "bank", "paypal", "pay_upon_invoice", "carrier", "alternate_payment"</span></span><br><span class="line"></span><br><span class="line">    $item1 = <span class="keyword">new</span> Item();</span><br><span class="line">    $item1-&gt;setName(<span class="string">'游戏充值'</span>) <span class="comment">//商品名</span></span><br><span class="line">        -&gt;setCurrency(<span class="string">'USD'</span>)  <span class="comment">//支付货币</span></span><br><span class="line">        -&gt;setQuantity(<span class="number">1</span>) <span class="comment">//数量</span></span><br><span class="line">        -&gt;setPrice(<span class="number">18.60</span>); <span class="comment">//金额</span></span><br><span class="line"></span><br><span class="line">    $itemList = <span class="keyword">new</span> ItemList();</span><br><span class="line">    $itemList-&gt;setItems(<span class="keyword">array</span>($item1)); <span class="comment">//商品，这里可以传入多个array($item1, $item2)</span></span><br><span class="line"></span><br><span class="line">    $details = <span class="keyword">new</span> Details();</span><br><span class="line"></span><br><span class="line">    $amount = <span class="keyword">new</span> Amount();</span><br><span class="line">    $amount-&gt;setCurrency(<span class="string">'USD'</span>) <span class="comment">//货币</span></span><br><span class="line">        -&gt;setTotal(<span class="number">18.60</span>) <span class="comment">//总金额</span></span><br><span class="line">        -&gt;setDetails($details);</span><br><span class="line"></span><br><span class="line">    $transaction = <span class="keyword">new</span> Transaction();</span><br><span class="line">    $transaction-&gt;setAmount($amount)</span><br><span class="line">        -&gt;setItemList($itemList)</span><br><span class="line">        -&gt;setInvoiceNumber(<span class="string">'KT123456789'</span>); <span class="comment">//订单号</span></span><br><span class="line"></span><br><span class="line">    $baseUrl = getBaseUrl();</span><br><span class="line">    $redirectUrls = <span class="keyword">new</span> RedirectUrls();</span><br><span class="line">    $redirectUrls-&gt;setReturnUrl(<span class="string">"$baseUrl/home/pay/auth_return?success=true"</span>)  <span class="comment">//授权登录后跳转地址</span></span><br><span class="line">        -&gt;setCancelUrl(<span class="string">"$baseUrl/home/pay/suc/id/&#123;$order_info['id']&#125;?success=false"</span>);  <span class="comment">//取消支付跳转地址</span></span><br><span class="line"></span><br><span class="line">    $payment = <span class="keyword">new</span> Payment();</span><br><span class="line">    $payment-&gt;setIntent(<span class="string">"authorize"</span>)</span><br><span class="line">        -&gt;setPayer($payer)</span><br><span class="line">        -&gt;setRedirectUrls($redirectUrls)</span><br><span class="line">        -&gt;setTransactions(<span class="keyword">array</span>($transaction));</span><br><span class="line"></span><br><span class="line">    $request = <span class="keyword">clone</span> $payment;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        $payment-&gt;create($apiContext);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (\<span class="keyword">Exception</span> $ex) &#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;error(<span class="string">'错误：'</span>.$ex-&gt;getMessage(), url(<span class="string">'suc'</span>, [<span class="string">'id'</span> =&gt; $order_info[<span class="string">'id'</span>]]).<span class="string">'?success=false'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $approvalUrl = $payment-&gt;getApprovalLink();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">$this</span>-&gt;redirect($approvalUrl);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="信息确认"><a href="#信息确认" class="headerlink" title="信息确认"></a>信息确认</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * paypal预授权回调(信息确认)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">auth_return</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="comment">//预授权支付</span></span><br><span class="line">        $apiContext = <span class="keyword">new</span> ApiContext(</span><br><span class="line">            <span class="keyword">new</span> OAuthTokenCredential(</span><br><span class="line">                <span class="keyword">$this</span>-&gt;config[<span class="string">'PAYPAL_APPID'</span>], <span class="comment">//Client ID</span></span><br><span class="line">                <span class="keyword">$this</span>-&gt;config[<span class="string">'PAYPAL_APPKEY'</span>]  <span class="comment">//Secret</span></span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line">        $apiContext-&gt;setConfig([<span class="string">'mode'</span> =&gt; <span class="string">'live'</span>]);</span><br><span class="line"></span><br><span class="line">    &#125;<span class="keyword">catch</span> (\<span class="keyword">Exception</span> $exception)&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;error(<span class="string">'系统错误：'</span>.$exception-&gt;getMessage(), url(<span class="string">'home/user/order'</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($_GET[<span class="string">'paymentId'</span>]) &amp;&amp; <span class="keyword">isset</span>($_GET[<span class="string">'token'</span>]) &amp;&amp; <span class="keyword">isset</span>($_GET[<span class="string">'PayerID'</span>])) &#123;</span><br><span class="line"></span><br><span class="line">        $paymentId = $_GET[<span class="string">'paymentId'</span>];</span><br><span class="line">        $payment = Payment::get($paymentId, $apiContext);</span><br><span class="line"></span><br><span class="line">        $transaction = $payment-&gt;transactions[<span class="number">0</span>]-&gt;toArray();</span><br><span class="line"></span><br><span class="line">        $execution = <span class="keyword">new</span> PaymentExecution();</span><br><span class="line">        $execution-&gt;setPayerId($_GET[<span class="string">'PayerID'</span>]);</span><br><span class="line"></span><br><span class="line">        $transaction = <span class="keyword">new</span> Transaction();</span><br><span class="line">        $amount = <span class="keyword">new</span> Amount();</span><br><span class="line">        $details = <span class="keyword">new</span> Details();</span><br><span class="line"></span><br><span class="line">        $amount-&gt;setCurrency(<span class="string">'USD'</span>); <span class="comment">//货币</span></span><br><span class="line">        $amount-&gt;setTotal(<span class="number">18.60</span>); <span class="comment">//总金额</span></span><br><span class="line">        $amount-&gt;setDetails($details);</span><br><span class="line">        $transaction-&gt;setAmount($amount);</span><br><span class="line"></span><br><span class="line">        $execution-&gt;addTransaction($transaction);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            $result = $payment-&gt;execute($execution, $apiContext);</span><br><span class="line">            <span class="keyword">if</span> ($result)&#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;success(<span class="string">'支付成功'</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;error(<span class="string">'支付失败'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $ex) &#123;</span><br><span class="line">            dd($ex-&gt;getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;error(<span class="string">'参数错误'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="IPN回调"><a href="#IPN回调" class="headerlink" title="IPN回调"></a>IPN回调</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * paypal回调(使用的是ipn，注意这里没有用webhook，请在商户号中配置ipn地址，且配置支付便便为utf-8)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">paypal_return</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!request()-&gt;isPost()) <span class="keyword">die</span>();</span><br><span class="line">    $post = request()-&gt;post();</span><br><span class="line">  </span><br><span class="line">    $order_sn = $post[<span class="string">'invoice'</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//$url = 'https://www.paypal.com/cgi-bin/webscr'; //正式live环境</span></span><br><span class="line">    $url = <span class="string">'https://www.sandbox.paypal.com/cgi-bin/webscr'</span>; <span class="comment">//sandbox测试环境</span></span><br><span class="line"></span><br><span class="line">    $data[<span class="string">'cmd'</span>] = <span class="string">'_notify-validate'</span>;</span><br><span class="line">    <span class="keyword">foreach</span> ($post <span class="keyword">as</span> $key =&gt; $item)  $data[$key] = ($item);  <span class="comment">//如果验证失败，请尝试加上urlencode，或者是编码错误</span></span><br><span class="line"></span><br><span class="line">    $res = <span class="keyword">$this</span>-&gt;http($url, $data, <span class="string">'POST'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>($res))&#123;</span><br><span class="line">        <span class="keyword">if</span> (strcmp($res, <span class="string">"VERIFIED"</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> ($post[<span class="string">'payment_status'</span>] == <span class="string">'Completed'</span>) &#123;</span><br><span class="line">                <span class="comment">//付款完成</span></span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">elseif</span>($post[<span class="string">'payment_status'</span>] == <span class="string">'Refunded'</span>)&#123;</span><br><span class="line">                <span class="comment">//退款</span></span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">elseif</span>($post[<span class="string">'payment_status'</span>] == <span class="string">'Voided'</span>)&#123;</span><br><span class="line">                <span class="comment">//取消支付授权（作废订单）</span></span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">elseif</span>($post[<span class="string">'payment_status'</span>] == <span class="string">'Pending'</span>)&#123;</span><br><span class="line">                <span class="comment">//订单审核</span></span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (strcmp ($res, <span class="string">"INVALID"</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">//未通过认证，有可能是编码错误或非法的 POST 信息</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">       <span class="comment">//未通过认证，有可能是编码错误或非法的 POST 信息</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"fail"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="curl助手函数："><a href="#curl助手函数：" class="headerlink" title="curl助手函数："></a>curl助手函数：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟提交参数，支持https提交 可用于各类api请求</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $url ： 提交的地址</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $data :POST数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $method : POST/GET，默认GET方式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> mixed</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">http</span><span class="params">($url, $data=<span class="string">''</span>, $method=<span class="string">'GET'</span>, $authorization = <span class="string">''</span>)</span></span>&#123;</span><br><span class="line">    $headers = <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">'Authorization: Bearer '</span>.$authorization,</span><br><span class="line">        <span class="string">'Content-Type'</span> =&gt; <span class="string">'x-www-form-urlencoded'</span></span><br><span class="line">      );</span><br><span class="line"></span><br><span class="line">    $curl = curl_init(); <span class="comment">// 启动一个CURL会话</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_URL, $url); <span class="comment">// 要访问的地址</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, <span class="keyword">false</span>); <span class="comment">// 对认证证书来源的检查</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, <span class="keyword">false</span>); <span class="comment">// 从证书中检查SSL加密算法是否存在</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER[<span class="string">'HTTP_USER_AGENT'</span>]); <span class="comment">// 模拟用户使用的浏览器</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, <span class="number">1</span>); <span class="comment">// 使用自动跳转</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_AUTOREFERER, <span class="number">1</span>); <span class="comment">// 自动设置Referer</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">empty</span>($authorization))&#123;</span><br><span class="line">        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>($method==<span class="string">'POST'</span>)&#123;</span><br><span class="line">        curl_setopt($curl, CURLOPT_POST, <span class="number">1</span>); <span class="comment">// 发送一个常规的Post请求</span></span><br><span class="line">        <span class="keyword">if</span> ($data != <span class="string">''</span>)&#123;</span><br><span class="line">            curl_setopt($curl, CURLOPT_POSTFIELDS, $data); <span class="comment">// Post提交的数据包</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    curl_setopt($curl, CURLOPT_TIMEOUT, <span class="number">30</span>); <span class="comment">// 设置超时限制防止死循环</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_HEADER, <span class="number">0</span>); <span class="comment">// 显示返回的Header区域内容</span></span><br><span class="line">    curl_setopt($curl, CURLOPT_RETURNTRANSFER, <span class="number">1</span>); <span class="comment">// 获取的信息以文件流的形式返回</span></span><br><span class="line">    $tmpInfo = curl_exec($curl); <span class="comment">// 执行操作</span></span><br><span class="line">    curl_close($curl); <span class="comment">// 关闭CURL会话</span></span><br><span class="line">    <span class="keyword">return</span> $tmpInfo; <span class="comment">// 返回数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ol><li>注意商户编码设为utf-8，不然ipn验证失败，在‘用户信息-用户信息与设置-销售工具-PayPal按钮语言编码-更多选项-否，请使用-选择 UTF-8’</li><li><p>出现下面情况（<strong>抱歉，我们现在无法完成您的购物 请返回到商家网站并选择其他付款方式。</strong>），请检查你的商户是否支持你支付账号所在的国家区域</p><p><img src="https://simayubocc.oss-cn-hangzhou.aliyuncs.com/img/2017/09/314671106.jpg" alt="QQ截图20170905233450.jpg"></p></li><li><p>ipn设置”用户信息-销售工具-即时付款通知-选择ipn设置”</p></li></ol><p>注：做的时候可能会出现很多问题，要注意的基本就这些，如果有其他问题可以留言告诉我！<br>还有就是不要忘记了引入命名空间哦！<br></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">Amount</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">Details</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">Item</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">ItemList</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">Payer</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">Payment</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">PaymentExecution</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">RedirectUrls</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Api</span>\<span class="title">Transaction</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Auth</span>\<span class="title">OAuthTokenCredential</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PayPal</span>\<span class="title">Rest</span>\<span class="title">ApiContext</span>;</span><br></pre></td></tr></table></figure><p></p></div><footer class="post-footer"><div class="post-tags"><a href="/tags/php/" rel="tag"># php</a> <a href="/tags/支付/" rel="tag"># 支付</a> <a href="/tags/paypal/" rel="tag"># paypal</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/archives/50155940/" rel="next" title="使用PHPMailer包实现PHP的邮件发送"><i class="fa fa-chevron-left"></i> 使用PHPMailer包实现PHP的邮件发送</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/archives/cf59ca96/" rel="prev" title="Linux安装最新内核并开启 BBR TCP加速脚本">Linux安装最新内核并开启 BBR TCP加速脚本 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8zOTQ5NS8xNjAyMg=="></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">Somson</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">18</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">5</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">21</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/simayubo" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="https://iuu.st/" target="_blank" title="iuu.st"><i class="fa fa-fw fa-magnet"></i>iuu.st</a></span></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装composer包"><span class="nav-number">1.</span> <span class="nav-text">安装composer包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#申请Paypal应用"><span class="nav-number">2.</span> <span class="nav-text">申请Paypal应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信息收集"><span class="nav-number">3.1.</span> <span class="nav-text">信息收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息确认"><span class="nav-number">3.2.</span> <span class="nav-text">信息确认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPN回调"><span class="nav-number">3.3.</span> <span class="nav-text">IPN回调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#curl助手函数："><span class="nav-number">3.4.</span> <span class="nav-text">curl助手函数：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">4.</span> <span class="nav-text">其它</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright" style="text-align:center">&copy; <span itemprop="copyrightYear">2019</span> <span class="with-love"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">Somson</span></div><div style="text-align:center">Github Pages & Hexo | NexT.Mist</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script type="text/javascript">!function(e,t){var n,c=e.getElementsByTagName(t)[0];"function"!=typeof LivereTower&&((n=e.createElement(t)).src="https://cdn-city.livere.com/js/embed.dist.js",n.async=!0,c.parentNode.insertBefore(n,c))}(document,"script")</script><script type="text/javascript">// Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });</script></body></html>
