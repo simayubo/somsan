@@ -10,14 +10,14 @@ categories: [docker]
 默认docker镜像是没有ssh的，需要我们去手动安装开启
 
 ## 解决
-1. openssl,openssh-server
+#### 安装openssl,openssh-server
 
 ```bash
 $ yum -y update
 $ yum install passwd openssl openssh-server -y
 ```
 
-2. 启动sshd
+#### 启动sshd
 ```bash
 $ /usr/sbin/sshd -D &
 ```
@@ -31,13 +31,13 @@ Could not load host key: /etc/ssh/ssh_host_rsa_key
 Could not load host key: /etc/ssh/ssh_host_ecdsa_key
 Could not load host key: /etc/ssh/ssh_host_ed25519_key
 ```
-  - 解决办法
-  ```bash
-  $ ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N ''
-  $ ssh-keygen -q -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''
-  $ ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key -N ''
-  ```
-3. 修改 /etc/ssh/sshd_config 配置信息
+解决办法
+```bash
+ $ ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N ''
+ $ ssh-keygen -q -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N ''
+ $ ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key -N ''
+```
+#### 修改 /etc/ssh/sshd_config 配置信息
 
 去掉注释 `Port`，`ListenAddress`，`ListenAddress`
 `UsePAM yes` 改为 `UsePAM no`
